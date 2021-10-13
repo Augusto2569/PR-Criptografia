@@ -15,5 +15,9 @@ class Admin():
         self.users.append(user)
         self.passwords.password[user_name] = Password(0,user_name,password,"","") #obviamente esto hay que controlarlo y mejorarlo
 
+    def delete_user(self,user_name:str):
+        self.users.pop(self.user.index("user_name"))
+
+
     
     
