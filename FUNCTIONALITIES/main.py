@@ -1,4 +1,3 @@
-from ELEMENTS import user
 from FUNCTIONALITIES import admin
 import os
 import time
@@ -71,13 +70,15 @@ while True:
                                                 new_acc_sec_ques, new_acc_notes)
 
                 elif action == "4":
-                    pass
+                    print("Share a password - Introduce the required data")
+                    receiving_user = input("Introduce the user which you will like to share your account: ")
+                    site_to_share = input("Introduce the site of the account you want to share: ")
+                    user_acc.share_user_account(admin.users, receiving_user, site_to_share)
 
                 elif action == "5":
                     print("Delete a password - Introduce the required data")
                     site = input("Introduce the site/application that you would like to delete: ")
                     user_acc.delete_ext_account(site)
-                    pass
 
                 elif action == "6":
                     # Cuandp queramos cerrar la app, deberiamos guardar toda los datos modificados en un JSON

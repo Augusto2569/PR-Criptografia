@@ -3,7 +3,8 @@
 class Password:
     #This class is used for creating a password that will be saved in our program
 
-    def __init__(self, site, username, password, security_questions=None, notes=None):
+    def __init__(self, site, username, password, security_questions=None, notes=None, owner=None):
+        self.owner = owner
         self.site = site
         self.username = username
         self.password = password

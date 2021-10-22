@@ -49,6 +49,10 @@ class PasswordList:
 
         """Visualizar todas las contraseñas de la lista"""
         for i in range(len(self.passwords)):
+
+            if self.passwords[i].owner is not None:
+                print("Shared password by: %s" % self.passwords[i].owner)
+
             print("Site/Application: %s\n"
                   "User: %s \n"
                   "Password: %s \n"
