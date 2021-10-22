@@ -54,11 +54,9 @@ while True:
                     acc_user = input("Introduce the user of the account: ")
                     acc_pass = input("Introduce the password of the account: ")
                     user_acc.add_new_ext_account(acc_site, acc_user, acc_pass)
-                    os.system("clear")
-                    print("Your account information have been stored correctly, either way you can modify it!")
-                    time.sleep(1.5)
 
                 elif action == "3":
+                    os.system("clear")
                     print("Modify password - Introduce the required data")
                     site = input("Introduce the site/application that you would like to change: ")
                     new_acc_site = input("Introduce the new site/application: ")
@@ -70,12 +68,14 @@ while True:
                                                 new_acc_sec_ques, new_acc_notes)
 
                 elif action == "4":
+                    os.system("clear")
                     print("Share a password - Introduce the required data")
                     receiving_user = input("Introduce the user which you will like to share your account: ")
                     site_to_share = input("Introduce the site of the account you want to share: ")
                     user_acc.share_user_account(admin.users, receiving_user, site_to_share)
 
                 elif action == "5":
+                    os.system("clear")
                     print("Delete a password - Introduce the required data")
                     site = input("Introduce the site/application that you would like to delete: ")
                     user_acc.delete_ext_account(site)
