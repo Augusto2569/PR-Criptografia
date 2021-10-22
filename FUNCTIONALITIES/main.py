@@ -10,7 +10,7 @@ time.sleep(2)
 
 while True:
     "Bucle que permite la ejecucion hasta que el usuario indique lo contrario"
-
+    admin.recover_users_information()
     os.system('clear')
     print("Welcome menu - Choose between actions: \n "
           "1) Login \n "
@@ -101,6 +101,7 @@ while True:
 
     # ---------------------- Close functionality -----------------------------
     elif action == "3":
+        admin.save_users_information()
         os.system("clear")
         print("Thanks for using PassSword!!")
         break

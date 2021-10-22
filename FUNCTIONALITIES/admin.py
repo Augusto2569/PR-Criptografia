@@ -1,7 +1,7 @@
 """Esta idea me parece más fácil de implementar (todo en una única clase que hereda del resto)"""
 from ELEMENTS import user
-from ELEMENTS import password_list
 import time
+import json
 
 
 class Admin:
@@ -28,7 +28,24 @@ class Admin:
 
     # -------- Esta funcion seria parte del guardar los datos de los usuarios
 
-    def save_user_information(self):
+    def recover_users_information(self):
+        with open("./JSONS/app_users.json", "r", encoding="utf-8", newline="") as file:
+            app_user_dic = json.load(file)
+            #self.users = app_user_dic["App_users"]
+            #print(app_user_dic["App_users"])
+            #time.sleep(5)
         return
+
+    def save_users_information(self):
+        app_user_dic = {}
+
+        for app_user in self.users:
+            app_user_dic[app_user.user_name] = app_user.user_password
+
+        with open("./JSONS/app_users.json", "w", encoding="utf-8", newline="") as file:
+            app_user = {"App_users": app_user_dic}
+            json.dump(app_user, file, indent=2)
+        return
+
 
 
