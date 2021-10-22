@@ -26,7 +26,7 @@ class PasswordList:
 
     def modify_password(self, site, new_site, new_user, new_pass, new_sec_ques, new_notes):
         """Modificar una contraseña de la lista"""
-        if len(self.passwords)== 0:
+        if len(self.passwords) == 0:
             print("Is impossible to modify any external account. \n"
                   "You don't have any external account registered in PassSword!!")
         for i in range(len(self.passwords)):
@@ -44,7 +44,7 @@ class PasswordList:
 
     def view_all_passwords(self):
         os.system("clear")
-        if len(self.passwords)==0:
+        if len(self.passwords) == 0:
             print("You don't have any external account registered in PassSword!")
 
         """Visualizar todas las contraseñas de la lista"""

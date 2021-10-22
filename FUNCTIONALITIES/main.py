@@ -1,14 +1,7 @@
 from ELEMENTS import user
 from FUNCTIONALITIES import admin
-from ELEMENTS import users_list
-# from ELEMENTS import password
-from ELEMENTS import password_list
 import os
 import time
-
-"""TENEMOS QUE CAMBIAR LA CONTRASEÑA PORQUE NO ES DE CADA USUARIO SINO DEL SITEMA. RELAMENTE TEINE QUE SER DE CADA
-USUARIO EN PARTICULAR."""
-
 
 admin = admin.Admin()
 os.system('clear')
@@ -35,7 +28,9 @@ while True:
         app_user = input("Username: ")
         app_pass = input("Password: ")
         input("Please press enter to confirm")
-        flag = admin.log_in_check_user(app_user, app_pass)
+        log_in_ck = admin.log_in_check_user(app_user, app_pass)
+        flag = log_in_ck[0]
+        user_acc = log_in_ck[1]
 
         if flag:
             while True:
@@ -51,15 +46,18 @@ while True:
                 action = input("Write down 1, 2, 3, 4, 5 or 6: ")
 
                 if action == "1":
-                    admin.visual_user_accounts()
+                    user_acc.visual_user_accounts()
 
                 elif action == "2":
+                    os.system("clear")
                     print("Add a new password - Introduce the account information")
                     acc_site = input("Introduce the site of the account: ")
                     acc_user = input("Introduce the user of the account: ")
                     acc_pass = input("Introduce the password of the account: ")
-                    admin.add_new_ext_account(acc_site, acc_user, acc_pass)
+                    user_acc.add_new_ext_account(acc_site, acc_user, acc_pass)
+                    os.system("clear")
                     print("Your account information have been stored correctly, either way you can modify it!")
+                    time.sleep(1.5)
 
                 elif action == "3":
                     print("Modify password - Introduce the required data")
@@ -69,9 +67,8 @@ while True:
                     new_acc_pass = input("Introduce the new password: ")
                     new_acc_sec_ques = input("Introduce the new security question: ")
                     new_acc_notes = input("Introduce the new notes: ")
-                    admin.modify_ext_account(site, new_acc_site, new_acc_user, new_acc_pass, new_acc_sec_ques,
-                                             new_acc_notes)
-                    pass
+                    user_acc.modify_ext_account(site, new_acc_site, new_acc_user, new_acc_pass,
+                                                new_acc_sec_ques, new_acc_notes)
 
                 elif action == "4":
                     pass
@@ -79,7 +76,7 @@ while True:
                 elif action == "5":
                     print("Delete a password - Introduce the required data")
                     site = input("Introduce the site/application that you would like to delete: ")
-                    admin.delete_ext_account(site)
+                    user_acc.delete_ext_account(site)
                     pass
 
                 elif action == "6":
