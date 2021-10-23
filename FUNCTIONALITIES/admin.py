@@ -6,43 +6,63 @@ import json
 
 class Admin:
     def __init__(self):
-        self.users = []
+        self.users = self.recover_json_information("./JSONS/app_users.json")["App_users"]
+        self.external_accounts = self.recover_json_information("./JSONS/users_external_accounts.json")
 
+    #versión para diccionario
     def add_user(self, user_name: str, password: str):
-        for i in range(len(self.users)):
-            if self.users[i].user_name == user_name:
-                print("User name already taken, choose another one.")
-                time.sleep(2)
-                return
-        temp = user.User(user_name, password)
-        self.users.append(temp)
+        try:
+            # Si no hay error es que el usuario existe y por ello imprimimos el mensaje
+            self.users[user_name]
+            print("User already taken, choose another one.")
+        except KeyError:
+            self.users[user_name] = password
+            external_accounts = self.recover_json_information("./JSONS/users_external_accounts.json")
+            external_accounts[user_name] = {}
+            self.save_users_information()
 
     def log_in_check_user(self, user_name, user_password):
         answer = [False, None]
-        for i in range(len(self.users)):
-            if self.users[i].user_name == user_name and self.users[i].user_password == user_password:
+        try:
+            if (self.users[user_name] == user_password):
                 answer[0] = True
-                answer[1] = self.users[i]
+                answer[1] = self.users #Ver como devolver la informacion del usuario
                 return answer
-        return answer
+            print("Error - User not registered!")
+            return answer
+            #si existe, está bien
+
+
+        except KeyError:
+            #no existe
+            return answer
 
     # -------- Esta funcion seria parte del guardar los datos de los usuarios
-
-    def recover_users_information(self):
-        with open("./JSONS/app_users.json", "r", encoding="utf-8", newline="") as file:
-            app_user_dic = json.load(file)
-            #self.users = app_user_dic["App_users"]
-            #print(app_user_dic["App_users"])
-            #time.sleep(5)
-        return
+    def recover_json_information(self, route):
+        with open(route, "r", encoding="utf-8", newline="") as file:
+            json_content = json.load(file)
+        return json_content
 
     def save_users_information(self):
         app_user_dic = {}
 
         for app_user in self.users:
-            app_user_dic[app_user.user_name] = app_user.user_password
+            print(self.users[app_user])
+            app_user_dic[app_user] = self.users[app_user]
 
         with open("./JSONS/app_users.json", "w", encoding="utf-8", newline="") as file:
+            app_user = {"App_users": app_user_dic}
+            json.dump(app_user, file, indent=2)
+        return
+
+    def save_external_account(self):
+        app_user_dic = {}
+
+        for app_user in self.users:
+            print(self.users[app_user])
+            app_user_dic[app_user] = self.users[app_user]
+
+        with open("./JSONS/users_external_accounts.json", "w", encoding="utf-8", newline="") as file:
             app_user = {"App_users": app_user_dic}
             json.dump(app_user, file, indent=2)
         return

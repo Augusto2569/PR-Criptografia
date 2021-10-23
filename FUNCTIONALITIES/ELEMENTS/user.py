@@ -16,6 +16,7 @@ class User:
         self.external_passwords.add_password(new_pass)
 
     def visual_user_accounts(self):
+        "Muestra por pantalla las contraseñas del usuario"
         self.external_passwords.view_all_passwords()
 
     def modify_ext_account(self, site, new_site, new_user, new_pass, new_sec_ques, new_notes):

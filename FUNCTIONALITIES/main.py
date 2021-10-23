@@ -10,7 +10,7 @@ time.sleep(2)
 
 while True:
     "Bucle que permite la ejecucion hasta que el usuario indique lo contrario"
-    admin.recover_users_information()
+    admin.recover_json_information("./JSONS/app_users.json")
     os.system('clear')
     print("Welcome menu - Choose between actions: \n "
           "1) Login \n "
