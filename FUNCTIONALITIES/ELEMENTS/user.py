@@ -12,7 +12,8 @@ class User:
         self.user_shared_passwords = None
 
     def add_new_ext_account(self, acc_site, acc_username, acc_password):
-        new_pass = password.Password(acc_site, acc_username, acc_password)
+        '''Añade external account'''
+        new_pass = password.Password(acc_site, acc_username, acc_password) #creas una passowrd con la info por parametro
         self.external_passwords.add_password(new_pass)
 
     def visual_user_accounts(self):

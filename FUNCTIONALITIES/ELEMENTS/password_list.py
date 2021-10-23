@@ -11,8 +11,8 @@ class PasswordList:
 
     def add_password_v2(self, password: object):
         """Añadir contraseña a la lista de contraseñas"""
-        existing = self.check_existing_password(password.site)
-        if existing >= 0:
+        existing = self.check_existing_password(password.site) #buscamos si la contraseña existe por el sitio
+        if existing:
             self.passwords.append(password)
             os.system("clear")
             print("Your account information have been stored correctly, either way you can modify it!")
@@ -134,6 +134,14 @@ class PasswordList:
         input("Press enter to stop viewing your external accounts information ")
 
     def check_existing_password(self, site):
+
+        try:
+            a = self.passwords[user][site]
+
+        except  KeyError:
+            return None
+
+
         if len(self.passwords) == 0:
             return 0
         index = -1
